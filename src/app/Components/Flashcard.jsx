@@ -72,22 +72,29 @@ function Flashcard() {
   const { term, definition } = vocab[currentCardIndex];
 
   return (
-    <div>
+    <div className='flex flex-col items-center'>
       {practiceMode ? (
-        <div>
-          <p>Question: {term}</p>
-          <p>Answer: {definition}</p>
-          <button onClick={() => handlePractice(0)}>0</button>
-          <button onClick={() => handlePractice(1)}>1</button>
-          <button onClick={() => handlePractice(2)}>2</button>
-          <button onClick={() => handlePractice(3)}>3</button>
-          <button onClick={() => handlePractice(4)}>4</button>
-          <button onClick={() => handlePractice(5)}>5</button>
+        <div className='bg-white p-4 rounded-lg shadow-md'>
+          <p className='text-lg font-semibold mb-4'>Question: {term}</p>
+          <p className='text-gray-600'>Answer: {definition}</p>
+          <div className='grid grid-cols-3 gap-4 mt-4'>
+            {[0, 1, 2, 3, 4, 5].map((value) => (
+              <button 
+                key={value}
+                onClick={() => handlePractice(value)}
+                className='py-2 px-4 rounded transition-colors duration-300 hover:text-white border border-green-500 text-green-500 font-semibold'>
+                {value}
+              </button>
+            ))}
+          </div>
         </div>
       ) : (
-        <div>
-          <p>Question: {term}</p>
-          <button onClick={() => setPracticeMode(true)}>Practice</button>
+        <div className='bg-white p-4 rounded-lg shadow-md'>
+          <p className='text-lg font-semibold mb-4'>Question: {term}</p>
+          <button 
+            onClick={() => setPracticeMode(true)}
+            className='py-2 px-4 rounded transition-colors duration-300 hover:bg-green-500 hover:text-white border border-green-500 text-green-500 font-semibold'
+            >Practice</button>
         </div>
       )}
     </div>
