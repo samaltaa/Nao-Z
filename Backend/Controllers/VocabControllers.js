@@ -1,4 +1,4 @@
-const Vocab = require('../models/VocabModels')
+const Vocab = require('./models/VocabModels')
 
 module.exports = {
     getAllVocab: async (req, res) => {
