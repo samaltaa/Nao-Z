@@ -16,7 +16,7 @@ db.createCollection( "Mandarin Vocab", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["term", "pinyin", "definition"],
+            required: ["chinese", "pinyin", "definition"],
             properties: {
                 term: {
                     bsonType: "string",
