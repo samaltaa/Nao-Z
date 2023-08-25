@@ -1,8 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Vocab = require("./Models/VocabModels")
+const cors = require("cors");
+const Vocab = require("./Models/VocabModels");
 const app = express();
 
+app.use(cors({
+    origin: '*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}))
 app.use(express.json())
 
 //routes

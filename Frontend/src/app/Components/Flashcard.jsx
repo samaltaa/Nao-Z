@@ -8,7 +8,7 @@ function Flashcard() {
   const [repetition, setRepetition] = useState(0);
   const [easinessFactor, setEasinessFactor] = useState(2.5); // Initial value
   const [currentInterval, setCurrentInterval] = useState(1);
-  const [vocab, setVocab] = useState([])
+  const [vocab, setVocabList] = useState([])
 
   //handle moving to the next card after practicing 
   const moveToNextCard = () => {
@@ -41,20 +41,17 @@ function Flashcard() {
   };
 
   useEffect(() => {
-    async function fetchVocab() {
-        try{
-            const response = await fetch('/api/getVocabulary');
-            if (!response.ok){
-                throw new Error(`fetch error: ${response.status}-${response.statusText}`)
-            }
+    async function fetchData() {
+        try {
+            const response = await fetch('http://localhost:3000/vocab');
             const data = await response.json();
-            setVocab(data)
+            setVocabList(data);
         } catch (error) {
-            console.error('error fetching vocabulary', error);
+            console.error("Error fetching data", error);
         }
     }
-    fetchVocab();
-  },[])
+    fetchData();
+}, []);
 
   if (vocab.length === 0){
     return <div className='fixed inset-0 flex items-center justify-center z-50'>
@@ -74,7 +71,7 @@ function Flashcard() {
   return (
     <div className='flex flex-col items-center'>
       {practiceMode ? (
-        <div className='bg-white p-4 rounded-lg shadow-md'>
+        <div className='bg-blue p-4 rounded-lg shadow-md'>
           <p className='text-lg font-semibold mb-4'>Question: {term}</p>
           <p className='text-gray-600'>Answer: {definition}</p>
           <div className='grid grid-cols-3 gap-4 mt-4'>
@@ -89,7 +86,7 @@ function Flashcard() {
           </div>
         </div>
       ) : (
-        <div className='bg-white p-4 rounded-lg shadow-md'>
+        <div className='bg-rose-600 p-4 rounded-lg shadow-md'>
           <p className='text-lg font-semibold mb-4'>Question: {term}</p>
           <button 
             onClick={() => setPracticeMode(true)}
