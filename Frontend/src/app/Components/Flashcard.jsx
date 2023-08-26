@@ -92,7 +92,7 @@ function Flashcard() {
         </div>
       ) : (
         <div className='bg-rose-600 p-4 rounded-lg shadow-md'>
-          <p className='text-lg font-semibold mb-4'>Question: {term}</p>
+          <p className='text-lg font-semibold mb-4'>Question: {vocab[(currentCardIndex) % vocab.length].term} </p>
           <button 
             onClick={() => setPracticeMode(true)}
             className='py-2 px-4 rounded transition-colors duration-300 hover:bg-green-500 hover:text-white border border-green-500 text-green-500 font-semibold'
