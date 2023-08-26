@@ -21,19 +21,24 @@ function Flashcard() {
 
   //handle practicing the current card
   const handlePractice =(q)=> {
+    let newInterval;
     //implement SM2 algorithm here
-    if (q >= 3) {
-        const updatedInterval = repetition === 0 ? 1: currentInterval * easinessFactor;
-        setCurrentInterval(Math.round(updatedInterval));
-        setRepetition(repetition + 1);
-    } else{
-        setRepetition(0);
-        setCurrentInterval(1);
+    if (q === 0) {
+      newInterval = 5 * 60 * 1000; // 5 minutes in milliseconds
+    } else if (q === 1) {
+      newInterval = 10 * 60 * 1000; // 10 minutes in milliseconds
+    } else if (q === 2 || q === 3) {
+      newInterval = 25 * 60 * 1000; // 25 minutes in milliseconds 
+    } else if (q === 4 || q === 5) {
+      newInterval = 5 * 24 * 60 * 60 * 1000; // 5 days in milliseconds
     }
+    
     //calculate updated easiness factor and interval
     const updatedEF = easinessFactor + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02));
-    setEasinessFactor(Math.max(1., updatedEF));
+    setEasinessFactor(Math.max(1.3, updatedEF));
 
+    setCurrentInterval(newInterval);
+    setRepetition(repetition + 1);
     setGrade(null); //reset grade
     setPracticeMode(false); //exit practice mode
 
@@ -75,12 +80,12 @@ function Flashcard() {
           <p className='text-lg font-semibold mb-4'>Question: {term}</p>
           <p className='text-gray-600'>Answer: {definition}</p>
           <div className='grid grid-cols-3 gap-4 mt-4'>
-            {[0, 1, 2, 3, 4, 5].map((value) => (
+            {[0, 1, 2, 3, 4, 5].map((q) => (
               <button 
-                key={value}
-                onClick={() => handlePractice(value)}
+                key={q}
+                onClick={() => handlePractice(q)}
                 className='py-2 px-4 rounded transition-colors duration-300 hover:text-white border border-green-500 text-green-500 font-semibold'>
-                {value}
+                {q}
               </button>
             ))}
           </div>
