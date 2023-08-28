@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import WordCard from './Cards/WordCard';
 
 function Flashcard() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
@@ -71,14 +72,13 @@ function Flashcard() {
     </div>
   }
 
-  const { term, definition} = vocab[currentCardIndex];
+  const { term, definition, pinyin} = vocab[currentCardIndex];
 
   return (
     <div className='flex flex-col items-center'>
       {practiceMode ? (
         <div className='bg-blue p-4 rounded-lg shadow-md'>
-          <p className='text-lg font-semibold mb-4'>Question: {term}</p>
-          <p className='text-gray-600'>Answer: {definition}</p>
+          <WordCard term={term} definition={definition} pronunciation={pinyin}/>
           <div className='grid grid-cols-3 gap-4 mt-4'>
             {[0, 1, 2, 3, 4, 5].map((q) => (
               <button 
