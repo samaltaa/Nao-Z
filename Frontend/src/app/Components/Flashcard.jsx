@@ -71,7 +71,7 @@ function Flashcard() {
     </div>
   }
 
-  const { term, definition } = vocab[currentCardIndex];
+  const { term, definition} = vocab[currentCardIndex];
 
   return (
     <div className='flex flex-col items-center'>

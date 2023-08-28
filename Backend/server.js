@@ -4,6 +4,9 @@ const cors = require("cors");
 const Vocab = require("./Models/VocabModels");
 const app = express();
 
+//environment variables
+
+//cors middleware
 app.use(cors({
     origin: '*',
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
