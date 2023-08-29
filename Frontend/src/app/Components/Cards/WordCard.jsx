@@ -10,7 +10,7 @@ import React from 'react';
 
 const WordCard = ({ term, definition, pronunciation}) => {
   return (
-    <div className='w-full max-w-5x1 mx-auto bg-yellow-400 rounded-md shadow:md p-9'>
+    <div className='w-full  bg-yellow-400 rounded-md shadow:md p-9'>
         <div className='p-4'>
             <h2 className='text-xl font-bold text-lavender-dark pb-4'>
                 Term: {term}
