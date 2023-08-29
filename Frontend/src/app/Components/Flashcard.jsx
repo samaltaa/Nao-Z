@@ -79,23 +79,23 @@ function Flashcard() {
       {practiceMode ? (
         <div className='bg-blue p-4 rounded-lg shadow-md'>
           <WordCard term={term} definition={definition} pronunciation={pinyin}/>
-          <div className='grid grid-cols-3 gap-4 mt-4'>
+          <div className='flex flex-col gap- mt-4'>
             {[0, 1, 2, 3, 4, 5].map((q) => (
               <button 
                 key={q}
                 onClick={() => handlePractice(q)}
-                className='py-2 px-4 rounded transition-colors duration-300 hover:text-white border border-green-500 text-green-500 font-semibold'>
+                className='my-2 py-2 px-4 rounded transition-colors duration-300 hover:text-white border border-yellow-400 text-yellow-400 font-semibold'>
                 {q}
               </button>
             ))}
           </div>
         </div>
       ) : (
-        <div className='bg-rose-600 p-4 rounded-lg shadow-md'>
-          <p className='text-lg font-semibold mb-4'>Question: {vocab[(currentCardIndex) % vocab.length].term} </p>
+        <div className='flex flex-col items-center justify-center w-1/2 h-40 p-9 m-9 bg-yellow-400 rounded-md shadow:md'>
+          <p className='text-lg font-semibold mb-4'> Term: {vocab[(currentCardIndex) % vocab.length].term} </p>
           <button 
             onClick={() => setPracticeMode(true)}
-            className='py-2 px-4 rounded transition-colors duration-300 hover:bg-green-500 hover:text-white border border-green-500 text-green-500 font-semibold'
+            className='px-4 py-2 rounded transition-colors duration-300 hover:bg-green-500 hover:text-white border border-green-500 text-green-500 font-semibold'
             >Practice</button>
         </div>
       )}
