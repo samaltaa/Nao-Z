@@ -40,13 +40,31 @@ const CourseList = ()=> {
             <div>CourseInfo card component goes here</div>
         ))}
         
-        <div className=''>
+        <div className='pagination'>
             <button
-                onClick={""}
-                className=''
-                disabled={""}
+                onClick={handlePreviousPage}
+                className={`pagination-button ${currentPage === 1 ? 'disabled': ''}`}
+                disabled={currentPage === 1}
             >
                 Previous
+            </button>
+
+            {Array.from({ length: pageCount}, (_, index) =>(
+                <button
+                    key={index}
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
+                >
+                    {index + 1}
+                </button>
+            ))}
+
+            <button
+                onClick={handleNextPage}
+                className={`pagination-button ${currentPage === pageCount ? 'disabled' : ''}`}
+                disabled={currentPage === pageCount}
+            >
+                Next
             </button>
         </div>
     </div>
