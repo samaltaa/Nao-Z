@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import WordCard from './Cards/WordCard';
+import { fetchData } from "../Utils/helpers";
 
 function Flashcard() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
@@ -47,17 +48,13 @@ function Flashcard() {
   };
 
   useEffect(() => {
-    async function fetchData() {
-        try {
-            const response = await fetch('http://localhost:3000/vocab');
-            const data = await response.json();
-            setVocabList(data);
-        } catch (error) {
-            console.error("Error fetching data", error);
-        }
-    }
-    fetchData();
-}, []);
+    fetchData('http://localhost:3000/vocab')
+    .then(data => {
+      setVocabList(data)
+    }).catch(error => {
+      console.log("error fetching data", error)
+    })
+  }, []);
 
   if (vocab.length === 0){
     return <div className='fixed inset-0 flex items-center justify-center z-50'>
