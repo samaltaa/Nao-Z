@@ -1,4 +1,5 @@
 import React from 'react'
+import CourseCard from './Cards/CourseCard';
 //folder where all functions for the app will be held for reuse
 import '../Utils/helpers';
 
@@ -37,7 +38,7 @@ const CourseList = ()=> {
   return (
     <div className='w-full flex flex-grid wrap-around'>
         {visibleCourses.map((course, index) => (
-            <div>CourseInfo card component goes here</div>
+            <CourseCard/>
         ))}
         
         <div className='pagination'>
