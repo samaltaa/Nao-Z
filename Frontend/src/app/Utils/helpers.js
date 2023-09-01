@@ -20,14 +20,18 @@ export async function fetchData(url) {
 
 //pagination functions
 
-export function handlePageChange (newPage){
+export function handlePageChange(newPage){
     setCurrentPage(newPage);
 };
 
-export function handlePreviousPage () {
+export function handlePreviousPage(){
     if (currentPage > 1){
         handlePageChange(currentPage - 1);
     }
 };
 
-
+export function handleNextPage(){
+    if (currentPage < pageCount){
+        handlePageChange(currentPage + 1);
+    }
+};
