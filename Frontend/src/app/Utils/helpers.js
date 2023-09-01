@@ -23,3 +23,11 @@ export async function fetchData(url) {
 export function handlePageChange (newPage){
     setCurrentPage(newPage);
 };
+
+export function handlePreviousPage () {
+    if (currentPage > 1){
+        handlePageChange(currentPage - 1);
+    }
+};
+
+
