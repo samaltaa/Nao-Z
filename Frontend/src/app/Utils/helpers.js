@@ -18,3 +18,8 @@ export async function fetchData(url) {
   }
   
 
+//pagination functions
+
+export function handlePageChange (newPage){
+    setCurrentPage(newPage);
+};
