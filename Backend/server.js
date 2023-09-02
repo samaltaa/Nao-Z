@@ -1,6 +1,9 @@
+//tech
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+
+//models
 const Vocab = require("./Models/VocabModels");
 const app = express();
 
@@ -13,7 +16,7 @@ app.use(cors({
 }))
 app.use(express.json())
 
-//routes
+//routes for vocab collection
 app.get('/', (req, res) =>{
     res.send('Hello lady')
 })
@@ -38,6 +41,14 @@ app.post('/vocab', async(req, res) =>{
     }
 })
 
+//routes for courses collection 
+app.get('/courses', async (req, res) => {
+    try{
+        
+    }catch (error){
+
+    }
+})
 
 mongoose.
 connect("mongodb+srv://baalyshbhon:Diosesamor8090@cluster0.qvryjfv.mongodb.net/programming_vocab?retryWrites=true&w=majority")
