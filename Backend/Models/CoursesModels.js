@@ -4,17 +4,22 @@ const Courses_List = mongoose.Schema(
     {
         name:{
             type: String,
-            required: [true, "please enter term"]
+            required: [true, "please enter name"]
         },
         description: {
             type: String,
-            required: [true, "please enter pinyin"]
+            required: [true, "please enter description"]
+        },
+        source: {
+            type: String,
+            required: [true, "please enter source"]
         }
     }
 )
 const Courses = mongoose.model("courses", {
     name: {type: String},
-    description: {type: String}
+    description: {type: String},
+    source: {type: String}
 });
 
 

@@ -5,6 +5,7 @@ const cors = require("cors");
 
 //models
 const Vocab = require("./Models/VocabModels");
+const Courses = require("./Models/CoursesModels");
 const app = express();
 
 //environment variables
@@ -44,9 +45,21 @@ app.post('/vocab', async(req, res) =>{
 //routes for courses collection 
 app.get('/courses', async (req, res) => {
     try{
-        
-    }catch (error){
+        const courses = await Courses.find({});
+        res.status(200).json(courses)
+    } catch (Error){
+        res.status(500).json({message: Error.message})
+    }
+})
 
+app.post('/courses', async(req, res) =>{
+    try {
+        const courses = await Courses.create(req.body)
+        res.status(200).json(courses);
+
+    } catch(Error) {
+        console.log(Error.message)
+        res.status(500).json({message: Error.message})
     }
 })
 
