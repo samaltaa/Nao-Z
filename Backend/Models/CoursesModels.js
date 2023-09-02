@@ -1,11 +1,25 @@
 const mongoose = require("mongoose");
 
-const CoursesSchema = new mongoose.Schema({
-    name: { type: String },
-    description: { type: String },
-    source: { type: String }
-  });
+const programming_vocab = mongoose.Schema(
+  {
+    name:{
+      type:String
+    },
+    description:{
+      type:String
+    }
+  }
+)
+
+const Courses= mongoose.model("CourseInformation", {
+  name: {type: String},
+  description: {type: String}
+});
+
+const courses = mongoose.model("courseinformations", programming_vocab)
+
+Courses.create = async(body) => {
+  return await courses.create(body)
+}
   
-  const Courses = mongoose.model("courses", CoursesSchema);
-  
-  module.exports = Courses;
+module.exports = courses;

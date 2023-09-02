@@ -44,7 +44,7 @@ app.post('/vocab', async(req, res) =>{
 })
 
 //routes for courses collection 
-app.get('/courses', async (req, res) => {
+app.get('/Courses', async (req, res) => {
     try{
         const courses = await Courses.find({});
         res.status(200).json(courses)
@@ -53,7 +53,7 @@ app.get('/courses', async (req, res) => {
     }
 })
 
-app.post('/courses', async(req, res) =>{
+app.post('/Courses', async(req, res) =>{
     try {
         const courses = await Courses.create(req.body)
         res.status(200).json(courses);
