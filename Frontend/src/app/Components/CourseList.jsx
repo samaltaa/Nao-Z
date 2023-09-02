@@ -1,75 +1,31 @@
-import React from 'react'
-import CourseCard from './Cards/CourseCard';
-//folder where all functions for the app will be held for reuse
-import '../Utils/helpers';
+'use client'
+import React, { useEffect, useState } from 'react';
+import { fetchData } from '../Utils/helpers';
 
-const CourseList = ()=> {
-    const itemsPerPage = 4;
-    const pageCount = Math.ceil(courses.length / itemsPerPage);
+const CourseList = () => {
+  const [courses, setCourses] = useState([]);
 
-    const [currentPage, setCurrentPage] = React.useState(1);
-
-    /*TODO: add all these functions to ./Utils/helpers.js 
-            for modularity and cleaner code 
-    */
-    const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
-    };
-
-    const handlePreviousPage =()=> {
-        if (currentPage > 1){
-            handlePageChange(currentPage - 1);
-        }
-    };
-
-    const handleNextPage = () =>{
-        if (currentPage < pageCount){
-            handlePageChange(currentPage + 1);
-        }
-    };
-
-    //end of functions block
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const visibleCourses = courses.slice(startIndex, startIndex + itemsPerPage);
-
-
+  useEffect(() => {
+    fetchData('http://localhost:3000/Courses')
+      .then(data => {
+        setCourses(data);
+      })
+      .catch(error => {
+        console.log("error fetching data", error);
+      });
+  }, []);
 
   return (
     <div className='w-full flex flex-grid wrap-around'>
-        {visibleCourses.map((course, index) => (
-            <CourseCard/>
-        ))}
-        
-        <div className='pagination'>
-            <button
-                onClick={handlePreviousPage}
-                className={`pagination-button ${currentPage === 1 ? 'disabled': ''}`}
-                disabled={currentPage === 1}
-            >
-                Previous
-            </button>
-
-            {Array.from({ length: pageCount}, (_, index) =>(
-                <button
-                    key={index}
-                    onClick={() => handlePageChange(index + 1)}
-                    className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
-                >
-                    {index + 1}
-                </button>
-            ))}
-
-            <button
-                onClick={handleNextPage}
-                className={`pagination-button ${currentPage === pageCount ? 'disabled' : ''}`}
-                disabled={currentPage === pageCount}
-            >
-                Next
-            </button>
+      {courses.map((course, index) => (
+        <div key={index} className='course-card'>
+          <h1>{course.name}</h1>
+          <p>{course.description}</p>
+          {/* Render other course information as needed */}
         </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default CourseList
+export default CourseList;
