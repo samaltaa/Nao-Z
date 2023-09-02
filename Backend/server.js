@@ -17,11 +17,12 @@ app.use(cors({
 }))
 app.use(express.json())
 
-//routes for vocab collection
+
 app.get('/', (req, res) =>{
     res.send('Hello lady')
 })
 
+//routes for vocab collection
 app.get('/vocab', async (req, res) => {
     try{
         const vocab = await Vocab.find({});
