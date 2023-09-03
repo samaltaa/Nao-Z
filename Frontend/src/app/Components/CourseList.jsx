@@ -17,7 +17,7 @@ const CourseList = () => {
   }, []);
 
   return (
-    <div className='w-full flex flex-grid justify-between pt-5 wrap-around'>
+    <div className='w-full flex flex-grid justify-between pt-5 px-5 wrap-around'>
       {courses.map((course, index) => (
         <CourseCard name={course.name} description={course.description}/>
       ))}
