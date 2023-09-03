@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { fetchData } from '../Utils/helpers';
+import CourseCard from './CourseCard'
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -16,13 +17,9 @@ const CourseList = () => {
   }, []);
 
   return (
-    <div className='w-full flex flex-grid wrap-around'>
+    <div className='w-full flex flex-grid justify-between pt-5 wrap-around'>
       {courses.map((course, index) => (
-        <div key={index} className='course-card'>
-          <h1>{course.name}</h1>
-          <p>{course.description}</p>
-          {/* Render other course information as needed */}
-        </div>
+        <CourseCard name={course.name} description={course.description}/>
       ))}
     </div>
   );
